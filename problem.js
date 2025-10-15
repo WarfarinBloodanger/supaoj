@@ -1,3 +1,6 @@
+const md = window.markdownit();
+md.use(window.markdownitKatex);
+
 async function render() {
     const supabase = getClient();
     const problemNameEl = document.getElementById('problem_name');
@@ -22,7 +25,7 @@ async function render() {
         `;
         try {
             const info = JSON.parse(problem.info);
-            containerEl.innerHTML = info.description || '<p>No description</p>';
+            containerEl.innerHTML = md.render(info.description） || '<p>No description</p>';
         } catch (e) {
             containerEl.innerHTML = '<p>No description</p>';
         }
