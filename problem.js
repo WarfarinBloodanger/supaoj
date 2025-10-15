@@ -1,5 +1,5 @@
 const md = window.markdownit();
-md.use(window.markdownitKatex);
+md.use(window.texmath.use, window.katex);
 
 async function render() {
     const supabase = getClient();
