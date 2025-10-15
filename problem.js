@@ -1,5 +1,9 @@
 const md = window.markdownit();
-md.use(window.texmath.use, window.katex);
+md.use(window.texmath.use(window.katex), {
+  engine: window.katex,
+  delimiters: 'dollars',
+  katexOptions: { macros: { "\\RR": "\\mathbb{R}" } }
+});
 
 async function render() {
     const supabase = getClient();
