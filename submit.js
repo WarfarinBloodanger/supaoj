@@ -39,7 +39,7 @@ function initializePage() {
             if (error) {
                 alert('Submission failed: ' + error.message);
             } else {
-                location.href = "results?id=" + submissionId;
+                location.href = "result?id=" + submissionId;
             }
         } catch (error) {
             alert('Error: ' + error.message);
