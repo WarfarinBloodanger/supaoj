@@ -6,9 +6,9 @@ function initializePage() {
     const id = getArgs('id');
     if (id) {
         problemIdInput.value = id;
-        backLink.href = `/problem?id=${id}`;
+        backLink.href = `problem?id=${id}`;
     } else {
-        backLink.href = '/problem';
+        backLink.href = 'problem';
     }
     submitBtn.addEventListener('click', async function() {
         const problemId = problemIdInput.value.trim();
