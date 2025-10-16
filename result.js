@@ -102,28 +102,25 @@ async function process() {
         if (submissionInfo.problem) {
             backLink.href = `/problem?id=${submissionInfo.problem}`;
         }
-        const subscription = supabase
-            .channel('result-updates')
-            .on(
-                'postgres_changes',
-                {
-                    event: 'INSERT',
-                    schema: 'public',
-                    table: 'results',
-                    filter: `id=eq.${submissionId}`
-                },
-                async (payload) => {
-                    try {
-                        const resultObj = JSON.parse(payload.new.result);
-                        setCodeDisplay(resultObj.code);
-                        renderResult(resultObj);
-                        subscription.unsubscribe();
-                    } catch (e) {
-                        container.innerHTML = '<p>Error parsing result data</p>';
-                    }
+        const pollInterval = setInterval(async () => {
+            const { data: resultData, error } = await supabase
+                .from('results')
+                .select('*')
+                .eq('id', submissionId)
+                .single();
+            
+            if (resultData) {
+                try {
+                    const resultObj = JSON.parse(resultData.result);
+                    setCodeDisplay(resultObj.code);
+                    renderResult(resultObj);
+                    clearInterval(pollInterval);
+                } catch (e) {
+                    container.innerHTML = '<p>Error parsing result data</p>';
+                    clearInterval(pollInterval);
                 }
-            )
-            .subscribe();
+            }
+        }, 3000);
     } catch (e) {
         container.innerHTML = '<p>Error parsing submission data</p>';
     }
