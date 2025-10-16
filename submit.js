@@ -33,7 +33,7 @@ function initializePage() {
                 .insert([
                     { 
                         id: submissionId, 
-                        status: 'pending'
+                        status: 'pending',
                         info: JSON.stringify(submissionData)
                     }
                 ]);
