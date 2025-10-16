@@ -25,8 +25,9 @@ function renderResult(resultObj) {
                 <tr>
                     <th>Case</th>
                     <th>Status</th>
-                    <th>Time</th>
+                    <th>Details</th>
                     <th>Point</th>
+                    <th>Info</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,8 +37,9 @@ function renderResult(resultObj) {
             <tr>
                 <td>${test.case || ''}</td>
                 <td>${test.status || ''}</td>
-                <td>${test.time || ''}</td>
+                <td>${test.details || ''}</td>
                 <td>${test.point || ''}</td>
+                <td>${test.info || ''}</td>
             </tr>
         `;
     });
