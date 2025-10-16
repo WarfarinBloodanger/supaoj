@@ -13,7 +13,7 @@ function renderResult(resultObj) {
     const container = document.getElementById('result_container');
     const backLink = document.getElementById('back_link');
     if (resultObj.id) {
-        backLink.href = `/problem?id=${resultObj.id}`;
+        backLink.href = `problem?id=${resultObj.id}`;
     }
     if (!resultObj.verdict || !Array.isArray(resultObj.verdict)) {
         container.innerHTML = '<p>No test results available</p>';
@@ -62,6 +62,7 @@ async function process() {
         title.textContent = 'No submission ID provided';
         return;
     }
+    title.textContent = 'Submission Result #' + submissionId;
     submitTime.textContent = `Submit Time: ${formatTime(submissionId)}`;
     const { data: resultData, error: resultError } = await supabase
         .from('results')
