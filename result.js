@@ -53,7 +53,7 @@ function setCodeDisplay(code) {
 }
 async function process() {
     const supabase = getClient();
-    const submissionId = getArgs('id');
+    const submissionId = parseInt(getArgs('id'));
     const title = document.getElementById('title');
     const submitTime = document.getElementById('submit_time');
     const backLink = document.getElementById('back_link');
@@ -87,9 +87,9 @@ async function process() {
     if (!submissionData) {
         title.textContent = 'No such submission';
         container.innerHTML = '<p>Redirecting back in 3 seconds...</p>';
-        setTimeout(() => {
-            window.history.back();
-        }, 3000);
+        //setTimeout(() => {
+        //    window.history.back();
+        //}, 30000);
         return;
     }
     container.innerHTML = 'Pending for tests';
