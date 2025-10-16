@@ -47,7 +47,8 @@ function renderResult(resultObj) {
             </tbody>
         </table>
     `;
-    container.innerHTML = tableHTML;
+    container.innerHTML = "<h3>" + resultObj.brief + "</h3>";
+    container.innerHTML += tableHTML;
 }
 function setCodeDisplay(code) {
     const codeDisplay = document.getElementById('code_display');
@@ -95,7 +96,7 @@ async function process() {
         //}, 30000);
         return;
     }
-    container.innerHTML = 'Pending for tests';
+    container.innerHTML = '<p>Pending for tests</p>';
     try {
         const submissionInfo = JSON.parse(submissionData.info);
         setCodeDisplay(submissionInfo.code);
